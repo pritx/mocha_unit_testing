@@ -3,7 +3,7 @@ Mocha Unit Testing to for Program to Count Seconds, Minutes, Hours, Days, Weeks,
 
 ## Input and Output Formats
 Input : type(string)
-e.g ("2018 10 30 13:28:24)
+e.g ("2018 10 30 13:28:24")
 
 
 Ouput : type(string)
