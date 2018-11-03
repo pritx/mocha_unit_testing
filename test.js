@@ -24,7 +24,16 @@ it('converts YYYY/MM/DD Date to json object', () => {
   );
 });
 
-it('correctly calculates the difference of Years 1990 and 1980', () => {
-  assert.equal(operations.diffYear(1990, 1980), 10);
+it('correctly calculates the difference of the dates 2001/10/23 and 2010/05/24', () => {
+  assert.equal(operations.mnthDays(3, 1996),(31));
 });
+
+it('correctly calculates the difference of the dates 2001/10/23 and 2010/05/24', () => {
+  assert.equal(operations.diff_Date2(2001, 2010, 10, 05, 23, 24 ),('8 Years, 7 Months & 1 Days '));
+});
+
+
+
+
+
 

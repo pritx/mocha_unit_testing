@@ -65,47 +65,34 @@ const dateTimeParser = (date) => {
 };
 
 
-// This part belongs to year section calculation
-// input 1990 and 1980
-// output 45
-const diffYear = (y1,y2) => {
-    
-    return Math.abs(y2 -y1);
-}
+// This part belongs to calculation of Date
+const mnthDays = (mnth, eYear) => {                     // eYear is for End Year and eMonth is for End month
+    eMonth=mnth-1
+if ((eMonth == 0)||(eMonth == 2)||(eMonth == 4)|| (eMonth == 6) || (eMonth == 7) ||(eMonth == 9)||(eMonth == 11))   // For 31Days Months
 
-// TODO
-const leapYear =(y) =>
 {
-  return ((y % 4 == 0) && (y % 100 != 0)) || (y % 400 == 0);        // those years which are directly divisible by 4
+var eDays =  31;
 }
 
-const diffMonth = (m1,m2) => {
-    if (m1<=12 && m2<=12)
-    return Math.abs(m1-m2);             // what if..!! when someone enter one month value more than 12 
+if ((eMonth == 3)||(eMonth == 5)||(eMonth == 8)|| (eMonth == 10))           // For 30 Days Months
+
+{
+var eDays = 30;
 }
 
-const diffDay = (dy1,dy2) => {
-    if(dy1<=31 && dy2<=31)
-    return Math.abs(dy1-dy2);
+if (eMonth == 1&&((eYear % 4 == 0) && (eYear % 100 != 0)) || (eYear % 400 == 0))    // Leap Year Feb
+{
+var eDays = 29;
 }
 
-// Difference Computation
-const diffComputer = (c1,c2) => {
-
-    diff_year = diffYear(c1.date.y, c2.date.y)
-    diff_month = diffMonth (c1.date.m, c2.date.m)
-    diff_day = diffDay(c1.date.d, c2.date.d)
-
-    diff_hour = diffHour(c1.time.h, c2.time.h)
-    diff_mint = diffMint(c1.time.m, c2.time.m)
-    diff_sec  = diffSec(c1.time.s, c2.time.s)
-
-    return diff_year + " Years, " + diff_month + " Months & "  + diff_day + " Days " + " Hours," + " Minutes &" + " Seconds ";
-
+if (eMonth == 1&&((eYear % 4 != 0) || (eYear % 100 == 0)))                  // Non-Leap Year Feb
+{
+var eDays = 28;
+}
+    return eDays
 }
 
-
-// This part belongs to time section calculation
+// This part belongs to time section calculation // TODO
 const diffHour = (h1,h2) => {
     
     return Math.abs(h1-h2);
@@ -121,11 +108,45 @@ const diffSec = (s1,s2) => {
     return Math.abs(s1-s2);
 }
 
+const diff_Date2 =  (y1, y2, m1, m2, d1, d2) => {           // Here we pass the whole date 
+    if (d1<=d2){
+        day_diff= d2-d1;
+    }
+    else{
+        m2=m2-1                                            // For calculation of day difference b/w months
+        temp= mnthDays(m2,y2)
+        day_diff= d2 -d1 + temp
+    }
+    if (m1<=m2){                                           // Comparing months difference               
+        mnth_diff= m2-m1;
+    }
+    else{
+        temp=m2-m1                                         // store the month difference in temp and add it with 12 months(as Carry)
+        y2=y2-1
+        mnth_diff= 12 + temp                                    
+    }
+    year_diff= y2-y1
+
+        return year_diff + " Years, " + mnth_diff + " Months & "  + day_diff + " Days ";
+}
+
+// Difference Computation
+const diffComputer = (c1,c2) => {
+    diff_date = diff_Date2(c1.date.y, c2.date.y, c1.date.m, c2.date.m, c1.date.d, c2.date.d)
+
+    diff_hour = diffHour(c1.time.h, c2.time.h)
+    diff_mint = diffMint(c1.time.m, c2.time.m)
+    diff_sec  = diffSec(c1.time.s, c2.time.s)
+
+    return diff_date + diff_hour + " Hours," +diff_mint+ " Minutes &" + diff_sec + " Seconds ";
+
+}
+
 // Main Funtion to call
-// here two dates are passed i.e. start_date and end_date
+// Here two dates are passed i.e. start_date and end_date
 const diffDate = (dt1, dt2) => { // 2019/28/26 22:34:15
     // start date
-    s_dt = dateTimeParser(dt1); // {date: { y: 2019.... }, time: {...}}
+    s_dt = dateTimeParser(dt1); // {date: { y: 2019 m: 28 d:26 }, time: {h:22 m:34 s:15}}
     // end date
     e_dt = dateTimeParser(dt2);
 
@@ -136,13 +157,11 @@ module.exports = {
     diffSec,
     diffMint,
     diffHour,
-    leapYear,
     diffComputer,
-    diffDay,
-    diffMonth,
-    diffYear,
     diffDate,
     dateTimeParser,
     parseTime,
-    parseDate
+    parseDate,
+    mnthDays,
+    diff_Date2
 };
