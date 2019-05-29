@@ -1,7 +1,7 @@
 {
   "name": "mocha_unit_testing",
   "version": "1.0.0",
-  "description": "Mocha Unit Testing to for Program to Count Seconds, Minutes, Hours, Days, Weeks, Months and Year Between two String Formatted Date TIme",
+  "description": "Mocha Unit Testing for Program to Count Seconds, Minutes, Hours, Days, Weeks, Months and Year Between two String Formatted Date TIme",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
