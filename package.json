@@ -16,7 +16,8 @@
     "url": "https://github.com/pritx/mocha_unit_testing/issues"
   },
   "homepage": "https://github.com/pritx/mocha_unit_testing#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "mocha": "^5.2.0"
   }
 }
