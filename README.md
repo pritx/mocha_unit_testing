@@ -1,5 +1,5 @@
 # mocha_unit_testing
-Mocha Unit Testing to for Program to Count Seconds, Minutes, Hours, Days, Months and Year Between two String Formatted Date TIme
+Mocha Unit Testing for Program to Count Seconds, Minutes, Hours, Days, Months and Year Between two String Formatted Date TIme
 
 ## Input and Output Formats
 Input : type(string)
