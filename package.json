@@ -18,6 +18,6 @@
   "homepage": "https://github.com/pritx/mocha_unit_testing#readme",
   "dependencies": {},
   "devDependencies": {
-    "mocha": "^5.2.0"
+    "mocha": "^10.2.0"
   }
 }
